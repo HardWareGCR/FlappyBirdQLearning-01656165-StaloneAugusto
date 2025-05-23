@@ -3,10 +3,6 @@
 **Autor:** Stalone Augusto  
 **Matrícula:** 01656165  
 
-<p align="center">
-  <img src="https://imgur.com/example.png" alt="Demonstração do Jogo" width="500">
-</p>
-
 ## 🎯 Visão Geral
 
 Este projeto implementa o clássico jogo Flappy Bird utilizando aprendizado por reforço com Q-Learning. O pássaro autônomo aprende a jogar através de tentativa e erro, recebendo recompensas por ações positivas e penalidades por colisões.
@@ -69,9 +65,6 @@ O sistema gera automaticamente gráficos mostrando:
 2. Progresso da pontuação
 3. Taxa de exploração (ε)
 
-<p align="center">
-  <img src="https://imgur.com/metrics.png" alt="Gráficos de Desempenho" width="600">
-</p>
 
 ## 📌 Dificuldades e Soluções
 
