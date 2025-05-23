@@ -1,56 +1,86 @@
-# Zumbi_Sobrevivente - Aprendizado por Reforço em um Mundo Pós-Apocalíptico
+# Flappy Bird com Q-Learning
 
 **Autor:** Stalone Augusto  
-**Matrícula:** 01656165
+**Matrícula:** 01656165  
 
-## Visão Geral
+<p align="center">
+  <img src="https://imgur.com/example.png" alt="Demonstração do Jogo" width="500">
+</p>
 
-Este projeto implementa um agente de aprendizado por reforço (usando Q-Learning) que deve aprender a sobreviver em um mundo pós-apocalíptico cheio de zumbis. O agente precisa:
+## 🎯 Visão Geral
 
-1. Coletar recursos para sobreviver
-2. Evitar zumbis que reduzem sua vida
-3. Evitar armadilhas no ambiente
-4. Maximizar seu tempo de sobrevivência
+Este projeto implementa o clássico jogo Flappy Bird utilizando aprendizado por reforço com Q-Learning. O pássaro autônomo aprende a jogar através de tentativa e erro, recebendo recompensas por ações positivas e penalidades por colisões.
 
-## Tecnologias e Bibliotecas Utilizadas
+## 🛠️ Tecnologias Utilizadas
 
 - Python 3.8+
-- NumPy: Para computação numérica e armazenamento da tabela Q
-- Matplotlib: Para visualização das métricas de treinamento
-- Pygame: Para renderização do ambiente (opcional)
-- PyYAML: Para carregar parâmetros de configuração
+- Pygame (renderização gráfica)
+- NumPy (cálculos numéricos)
+- Matplotlib (visualização de dados)
+- Collections (estruturas de dados)
 
-## Algoritmos Aplicados
+## 📦 Instalação
 
-- **Q-Learning**: Algoritmo de aprendizado por reforço sem modelo
-- **Política ε-greedy**: Balanceamento entre exploração e exploração
-- **Decaimento de ε**: Redução gradual da taxa de exploração
-- **Tabela Q**: Armazenamento das estimativas de valor ação-estado
+1. Clone o repositório:
+```bash
+git clone https://github.com/seu-usuario/flappy-bird-qlearning.git
+cd flappy-bird-qlearning
+```
 
-## Fórmulas e Cálculos
-
-### Atualização da Tabela Q
-
-A atualização segue a equação do Q-Learning:
-
-\[ Q(s, a) \leftarrow Q(s, a) + \alpha \cdot [r + \gamma \cdot \max_{a'} Q(s', a') - Q(s, a)] \]
-
-Onde:
-- \( \alpha \) = taxa de aprendizado (0.1)
-- \( \gamma \) = fator de desconto (0.9)
-- \( s \) = estado atual
-- \( a \) = ação tomada
-- \( r \) = recompensa recebida
-- \( s' \) = próximo estado
-
-### Decaimento de Epsilon
-
-\[ \epsilon \leftarrow \max(\epsilon_{\text{min}}, \epsilon \cdot \text{decay}) \]
-
-## Como Executar o Projeto
-
-1. Clone o repositório
 2. Instale as dependências:
-
 ```bash
 pip install -r requirements.txt
+```
+
+## 🚀 Execução
+
+Execute o jogo com:
+```bash
+python flappy_bird_qlearning.py
+```
+
+**Controles:**
+- `Espaço`: Pular (modo manual)
+- `ESC`: Sair do jogo
+
+## 🧠 Algoritmo de Q-Learning
+
+### Equação Principal
+\[ Q(s,a) ← Q(s,a) + α[r + γ \max_{a'}Q(s',a') - Q(s,a)] \]
+
+**Parâmetros:**
+- Taxa de aprendizado (α): 0.2
+- Fator de desconto (γ): 0.95
+- ε inicial: 0.3 (decai para 0.01)
+
+### Sistema de Recompensas
+| Ação | Recompensa |
+|------|------------|
+| Passar por um cano | +100 |
+| Bater recorde | +200 |
+| Sobreviver (por frame) | +0.5 |
+| Distância do centro | -0.1 × distância |
+| Colisão | -1000 |
+
+## 📊 Métricas de Desempenho
+
+O sistema gera automaticamente gráficos mostrando:
+1. Evolução das recompensas
+2. Progresso da pontuação
+3. Taxa de exploração (ε)
+
+<p align="center">
+  <img src="https://imgur.com/metrics.png" alt="Gráficos de Desempenho" width="600">
+</p>
+
+## 📌 Dificuldades e Soluções
+
+| Problema | Solução Implementada |
+|----------|----------------------|
+| Pássaro só subia | Ajuste da física e recompensas |
+| Aprendizado lento | Melhoria na representação de estado |
+| Exploração excessiva | Decaimento adaptativo de ε |
+
+## 📜 Licença
+
+Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
