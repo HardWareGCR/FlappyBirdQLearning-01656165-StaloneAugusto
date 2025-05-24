@@ -1,79 +1,109 @@
-# Flappy Bird com Q-Learning
+# Flappy Bird AI com Q-Learning  
+**Nome do Projeto**: FlappyBirdQLearning-01656165-StaloneAugusto  
 
-**Autor:** Stalone Augusto  
-**Matrícula:** 01656165  
+## 🎯 Introdução ao Projeto  
+Este projeto implementa um agente de Inteligência Artificial utilizando **Q-Learning** para jogar o clássico *Flappy Bird* autonomamente. O objetivo é demonstrar como algoritmos de aprendizado por reforço podem ser aplicados em ambientes de jogos, permitindo que o agente aprenda a tomar decisões ótimas (pular ou não pular) para maximizar sua pontuação.  
 
-## 🎯 Visão Geral
+O jogo foi desenvolvido em **Python** com a biblioteca **Pygame**, e o agente utiliza uma **tabela Q** para armazenar e atualizar suas experiências, aprendendo através de tentativa e erro com um sistema de recompensas/punições.  
 
-Este projeto implementa o clássico jogo Flappy Bird utilizando aprendizado por reforço com Q-Learning. O pássaro autônomo aprende a jogar através de tentativa e erro, recebendo recompensas por ações positivas e penalidades por colisões.
+---
 
-## 🛠️ Tecnologias Utilizadas
+## 🛠 Tecnologias e Bibliotecas Utilizadas  
+- **Python 3.x** (Linguagem principal)  
+- **Pygame** (Renderização do jogo e interface gráfica)  
+- **NumPy** (Cálculos numéricos e manipulação de arrays)  
+- **Matplotlib** (Geração de gráficos de desempenho)  
+- **Collections** (Implementação eficiente da tabela Q com `defaultdict`)  
 
-- Python 3.8+
-- Pygame (renderização gráfica)
-- NumPy (cálculos numéricos)
-- Matplotlib (visualização de dados)
-- Collections (estruturas de dados)
-
-## 📦 Instalação
-
-1. Clone o repositório:
+**Instalação das dependências**:  
 ```bash
-git clone https://github.com/seu-usuario/flappy-bird-qlearning.git
-cd flappy-bird-qlearning
+pip install pygame numpy matplotlib
 ```
 
-2. Instale as dependências:
-```bash
-pip install -r requirements.txt
-```
+---
 
-## 🚀 Execução
+## 🧠 Algoritmos Aplicados  
+### **Q-Learning**  
+- **Política ε-greedy**: Balanceia **exploração** (ações aleatórias) e **exploitation** (ações baseadas no aprendizado).  
+- **Atualização da Tabela Q**:  
+  ```python
+  Q(s, a) ← Q(s, a) + α * [r + γ * max(Q(s', a')) - Q(s, a)]
+  ```
+  - `α` (taxa de aprendizado): **0.2**  
+  - `γ` (fator de desconto): **0.95**  
+  - `ε` (taxa de exploração): Decai de **0.3** para **0.01** ao longo do treinamento.  
 
-Execute o jogo com:
-```bash
-python flappy_bird_qlearning.py
-```
+### **Discretização do Estado**  
+O estado do jogo é representado por:  
+1. **Distância horizontal** ao cano (`distancia_x // 50`).  
+2. **Distância vertical** ao centro do vão (`distancia_centro_y // 25`).  
+3. **Velocidade vertical** do pássaro (`velocidade // 5`).  
 
-**Controles:**
-- `Espaço`: Pular (modo manual)
-- `ESC`: Sair do jogo
+---
 
-## 🧠 Algoritmo de Q-Learning
+## 📊 Cálculos e Fórmulas  
+### **Recompensas**  
+| Ação                     | Recompensa |  
+|--------------------------|------------|  
+| Passar por um cano       | `+100`     |  
+| Bater em obstáculo       | `-1000`    |  
+| Nova pontuação máxima    | `+100`     |  
+| Sobrevivência por frame  | `+0.5`     |  
 
-### Equação Principal
-\[ Q(s,a) ← Q(s,a) + α[r + γ \max_{a'}Q(s',a') - Q(s,a)] \]
+### **Decaimento da Exploração**  
+A cada episódio, `ε` é reduzido multiplicando por **0.9995**, com valor mínimo de **0.01**.  
 
-**Parâmetros:**
-- Taxa de aprendizado (α): 0.2
-- Fator de desconto (γ): 0.95
-- ε inicial: 0.3 (decai para 0.01)
+---
 
-### Sistema de Recompensas
-| Ação | Recompensa |
-|------|------------|
-| Passar por um cano | +100 |
-| Bater recorde | +200 |
-| Sobreviver (por frame) | +0.5 |
-| Distância do centro | -0.1 × distância |
-| Colisão | -1000 |
+## ▶ Como Executar o Projeto  
+1. **Clone o repositório**:  
+   ```bash
+   git clone https://github.com/seu-usuario/FlappyBirdQLearning-01656165-StaloneAugusto.git
+   cd FlappyBirdQLearning-01656165-StaloneAugusto
+   ```
 
-## 📊 Métricas de Desempenho
+2. **Execute o jogo**:  
+   ```bash
+   python flappy_bird_qlearning.py
+   ```
 
-O sistema gera automaticamente gráficos mostrando:
-1. Evolução das recompensas
-2. Progresso da pontuação
-3. Taxa de exploração (ε)
+3. **Controles**:  
+   - `ESC`: Encerra o programa.  
+   - O agente toma decisões automaticamente.  
 
+4. **Treinamento**:  
+   - O agente começa com alta exploração (`ε = 0.3`).  
+   - A cada 100 episódios, gráficos de desempenho são exibidos.  
 
-## 📌 Dificuldades e Soluções
+---
 
-| Problema | Solução Implementada |
-|----------|----------------------|
-| Pássaro só subia | Ajuste da física e recompensas |
-| Aprendizado lento | Melhoria na representação de estado |
-| Exploração excessiva | Decaimento adaptativo de ε |
+## 📈 Resultados e Comentários Finais  
+### **Desempenho Observado**  
+- **Episódios iniciais**: 0–5 pontos (agente explora aleatoriamente).  
+- **Após ~500 episódios**: Pontuação consistentemente acima de 10.  
+- **Melhor pontuação**: Entre 15–30 pontos.  
 
-## 📜 Licença
+### **Gráficos Gerados**  
+1. **Recompensas por Episódio**: Mostra a evolução das recompensas.  
+2. **Pontuação por Episódio**: Indica a melhoria na estratégia.  
+3. **Taxa de Exploração (ε)**: Decai ao longo do tempo.  
 
-Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
+### **Dificuldades Encontradas**  
+- **Definição do espaço de estados**: Encontrar a granularidade ideal exigiu ajustes.  
+- **Sistema de recompensas**: Valores muito altos ou baixos levavam a comportamentos subótimos.  
+- **Tempo de treinamento**: O agente precisou de centenas de episódios para aprender.  
+
+### **Conclusão**  
+O projeto demonstra com sucesso a aplicação do **Q-Learning** em um ambiente de jogo, destacando a importância de:  
+- Uma **boa discretização do estado**.  
+- **Recompensas/punições bem calibradas**.  
+- **Paciência no treinamento** (o agente melhora gradualmente).  
+
+**Próximos passos**:  
+- Implementar **Deep Q-Learning (DQN)** para lidar com espaços de estado contínuos.  
+- Adicionar mais métricas de avaliação (ex: taxa de sucesso por episódio).  
+
+---
+
+**Autor**: Stalone Augusto (Matrícula: 01656165)  
+**Repositório**: [GitHub](https://github.com/seu-usuario/FlappyBirdQLearning-01656165-StaloneAugusto)
