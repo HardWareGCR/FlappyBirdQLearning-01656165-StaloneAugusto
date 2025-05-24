@@ -97,7 +97,7 @@ A cada episódio, `ε` é reduzido multiplicando por **0.9995**, com valor míni
 ![Episódio 27 - Exploração: 0.0868, Pontos: 1](./imgs/FB/FB_2.PNG)  
 
 #### Gráficos de Desempenho - Episódio 99  
-![Gráficos de Recompensas, Pontuação e Exploração](./imgs/FB/FB_3.PNG)  
+![Gráficos de Recompensas, Pontuação e Exploração](./imgs/FB/FB_03.PNG)  
 
 ### **Dificuldades Encontradas**  
 - **Definição do espaço de estados**: Encontrar a granularidade ideal exigiu ajustes.  
