@@ -20,11 +20,11 @@ IMAGENS_PASSARO = [
 ]
 
 pygame.font.init()
-FONTE_PONTUACAO = pygame.font.SysFont('arial', 50)
+FONTE_PONTUACAO = pygame.font.SysFont('arial', 40)
 
 class AgenteQLearning:
     def __init__(self, acoes):
-        self.acoes = acoes  # [não_pular, pular]
+        self.acoes = acoes  # não_pular, pular
         self.taxa_aprendizado = 0.2
         self.fator_desconto = 0.95
         self.epsilon = 0.3  # Taxa de exploração inicial
@@ -53,9 +53,9 @@ class AgenteQLearning:
     def escolher_acao(self, estado):
         """Seleciona ação usando política epsilon-greedy"""
         if np.random.rand() < self.epsilon:
-            return random.choice(self.acoes)  # Exploração
+            return random.choice(self.acoes)  
         else:
-            return np.argmax(self.tabela_q[estado])  # Exploração
+            return np.argmax(self.tabela_q[estado])  
     
     def aprender(self, estado, acao, recompensa, proximo_estado):
         """Atualiza a tabela Q usando o algoritmo Q-learning"""
@@ -126,9 +126,9 @@ class Passaro:
         deslocamento = self.velocidade * self.tempo + self.GRAVIDADE * (self.tempo**2)
         
         # Limites de velocidade
-        if deslocamento > 16:  # Velocidade máxima de queda
+        if deslocamento > 16:  
             deslocamento = 16
-        elif deslocamento < -10:  # Velocidade máxima de subida
+        elif deslocamento < -10:  
             deslocamento = -10
             
         self.y += deslocamento
@@ -285,11 +285,11 @@ def main():
             # Processar canos e recompensas
             adicionar_cano = False
             remover_canos = []
-            recompensa = 0.5  # Recompensa por permanecer vivo
+            recompensa = 0.5  
             
             for cano in canos:
                 if cano.colidir(passaro):
-                    recompensa = -1000  # Grande penalidade por colisão
+                    recompensa = -1000  
                     rodando = False
                     break
                 
@@ -297,10 +297,10 @@ def main():
                     cano.passou = True
                     adicionar_cano = True
                     pontos += 1
-                    recompensa += 100  # Recompensa por passar pelo cano
+                    recompensa += 100  
                     if pontos > max_pontos:
                         max_pontos = pontos
-                        recompensa += 100  # Bônus por recorde
+                        recompensa += 100  
                 
                 cano.mover()
                 if cano.x + cano.CANO_TOPO.get_width() < 0:

@@ -88,6 +88,17 @@ A cada episódio, `ε` é reduzido multiplicando por **0.9995**, com valor míni
 2. **Pontuação por Episódio**: Indica a melhoria na estratégia.  
 3. **Taxa de Exploração (ε)**: Decai ao longo do tempo.  
 
+### **Imagens do Projeto em Execução**  
+
+#### Tela do Jogo - Episódio 11  
+![Episódio 11 - Exploração: 0.1822, Pontos: 0](./imgs/FB/FB_1.PNG)  
+
+#### Tela do Jogo - Episódio 27  
+![Episódio 27 - Exploração: 0.0868, Pontos: 1](./imgs/FB/FB_2.PNG)  
+
+#### Gráficos de Desempenho - Episódio 99  
+![Gráficos de Recompensas, Pontuação e Exploração](./imgs/FB/FB_3.PNG)  
+
 ### **Dificuldades Encontradas**  
 - **Definição do espaço de estados**: Encontrar a granularidade ideal exigiu ajustes.  
 - **Sistema de recompensas**: Valores muito altos ou baixos levavam a comportamentos subótimos.  
