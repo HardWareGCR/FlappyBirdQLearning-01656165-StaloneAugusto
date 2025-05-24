@@ -117,4 +117,4 @@ O projeto demonstra com sucesso a aplicação do **Q-Learning** em um ambiente d
 ---
 
 **Autor**: Stalone Augusto (Matrícula: 01656165)  
-**Repositório**: [GitHub](https://github.com/seu-usuario/FlappyBirdQLearning-01656165-StaloneAugusto)
+**Repositório**: [GitHub](https://github.com/HardWareGCR/FlappyBirdQLearning-01656165-StaloneAugusto)
